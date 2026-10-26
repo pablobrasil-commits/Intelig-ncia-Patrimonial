@@ -1,0 +1,707 @@
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Inteligência Patrimonial</title>
+
+  <meta
+    name="description"
+    content="Informe o crédito de seu interesse e solicite atendimento pelo WhatsApp."
+  >
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --branco: #f7f7f8;
+      --cinza: #b4bac5;
+      --dourado: #d8b974;
+      --dourado-claro: #f0dba7;
+      --borda: rgba(216, 185, 116, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      padding: 46px 18px 30px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--branco);
+
+      background:
+        radial-gradient(
+          ellipse at 10% 5%,
+          rgba(190, 145, 58, 0.17),
+          transparent 45%
+        ),
+        radial-gradient(
+          ellipse at 95% 90%,
+          rgba(63, 81, 111, 0.26),
+          transparent 46%
+        ),
+        repeating-linear-gradient(
+          125deg,
+          rgba(255, 255, 255, 0.018) 0,
+          rgba(255, 255, 255, 0.018) 1px,
+          transparent 1px,
+          transparent 30px
+        ),
+        linear-gradient(140deg, #080a0e, #171b23 55%, #090b10);
+    }
+
+    ::selection {
+      background: var(--dourado);
+      color: #111;
+    }
+
+    .pagina {
+      width: min(100%, 560px);
+      margin: 0 auto;
+    }
+
+    .cabecalho {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .cabecalho h1 {
+      margin: 0 0 22px;
+      font-size: clamp(20px, 5vw, 28px);
+      font-weight: 500;
+      line-height: 1.45;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .cabecalho h1 span {
+      color: var(--dourado);
+    }
+
+    .marca {
+      min-height: 66px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .marca img {
+      display: block;
+      width: min(245px, 80%);
+      height: auto;
+      max-height: 85px;
+      object-fit: contain;
+    }
+
+    .marca-reserva {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .divisor {
+      width: 76px;
+      height: 1px;
+      margin: 24px auto 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--dourado),
+        transparent
+      );
+    }
+
+    .cartao {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(25px, 6vw, 40px);
+      border: 1px solid var(--borda);
+      border-radius: 24px;
+
+      background: linear-gradient(
+        145deg,
+        rgba(30, 34, 42, 0.96),
+        rgba(12, 15, 21, 0.98)
+      );
+
+      box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .cartao::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--dourado),
+        transparent
+      );
+    }
+
+    .etiqueta {
+      margin: 0 0 12px;
+      color: var(--dourado);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .cartao h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 7vw, 36px);
+      font-weight: 400;
+      line-height: 1.16;
+    }
+
+    .introducao {
+      margin: 15px 0 28px;
+      color: var(--cinza);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    form {
+      display: grid;
+      gap: 21px;
+    }
+
+    .campo label {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .campo input {
+      width: 100%;
+      min-width: 0;
+      height: 56px;
+      padding: 0 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      background: rgba(5, 8, 13, 0.5);
+      color: var(--branco);
+      font: inherit;
+      font-size: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .campo input::placeholder {
+      color: #929ba9;
+    }
+
+    .campo input:focus {
+      border-color: var(--dourado);
+      box-shadow: 0 0 0 4px rgba(216, 185, 116, 0.09);
+    }
+
+    input:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--dourado-claro);
+      outline-offset: 4px;
+    }
+
+    .valor-container {
+      position: relative;
+    }
+
+    .valor-container span {
+      position: absolute;
+      top: 50%;
+      left: 17px;
+      transform: translateY(-50%);
+      color: var(--dourado);
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .valor-container input {
+      padding-left: 53px;
+    }
+
+    .ajuda {
+      display: block;
+      margin-top: 8px;
+      color: var(--cinza);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .autorizacao {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(216, 185, 116, 0.16);
+      border-radius: 12px;
+      background: rgba(216, 185, 116, 0.035);
+      cursor: pointer;
+    }
+
+    .autorizacao input {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 21px;
+      margin: 2px 0 0;
+      accent-color: var(--dourado);
+      cursor: pointer;
+    }
+
+    .autorizacao span {
+      color: #ccd0d8;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .autorizacao strong {
+      color: var(--dourado-claro);
+      font-weight: 600;
+    }
+
+    .botao {
+      width: 100%;
+      min-height: 58px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+
+      border: 0;
+      border-radius: 12px;
+
+      background: linear-gradient(
+        110deg,
+        #b78f47,
+        #e8ce93 55%,
+        #c8a45f
+      );
+
+      color: #15120b;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+
+      box-shadow: 0 8px 25px rgba(190, 149, 72, 0.14);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+
+    .botao:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(190, 149, 72, 0.25);
+    }
+
+    .botao:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .botao svg {
+      width: 21px;
+      height: 21px;
+      flex-shrink: 0;
+    }
+
+    .aviso {
+      margin: -7px 0 0;
+      color: var(--cinza);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--cinza);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer strong {
+      color: var(--dourado);
+      font-weight: 500;
+    }
+
+    noscript p {
+      color: #ffd5b4;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding-top: 30px;
+      }
+
+      .cartao {
+        border-radius: 19px;
+      }
+
+      .botao {
+        font-size: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="pagina">
+
+    <header class="cabecalho">
+      <h1>Inteligência <span>Patrimonial</span></h1>
+
+      <div class="marca">
+        <!--
+          Coloque o logo oficial atualizado na mesma pasta
+          deste HTML, com o nome: logo-bancorbras.png
+
+          Prefira a versão oficial adequada para fundo escuro.
+        -->
+        <img
+          src="logo-bancorbras.png"
+          alt="Bancorbrás"
+          onerror="
+            this.hidden = true;
+            this.parentElement.querySelector('.marca-reserva').hidden = false;
+          "
+        >
+
+        <!-- Texto de reserva: não é uma reprodução do logotipo. -->
+        <span class="marca-reserva" hidden>Bancorbrás</span>
+      </div>
+
+      <div class="divisor" aria-hidden="true"></div>
+    </header>
+
+    <section class="cartao" aria-labelledby="titulo-formulario">
+      <p class="etiqueta">Atendimento personalizado</p>
+
+      <h2 id="titulo-formulario">
+        Seu próximo passo merece planejamento.
+      </h2>
+
+      <p class="introducao">
+        Informe o crédito de seu interesse e seus dados de contato
+        para continuar o atendimento pelo WhatsApp.
+      </p>
+
+      <form id="formulario" novalidate>
+
+        <div class="campo">
+          <label for="credito">Valor do crédito de interesse</label>
+
+          <div class="valor-container">
+            <span aria-hidden="true">R$</span>
+
+            <input
+              type="text"
+              id="credito"
+              name="credito"
+              inputmode="decimal"
+              placeholder="Ex.: 300.000,00"
+              maxlength="20"
+              aria-describedby="ajuda-credito"
+              required
+            >
+          </div>
+
+          <small class="ajuda" id="ajuda-credito">
+            Informe o valor desejado em reais.
+          </small>
+        </div>
+
+        <div class="campo">
+          <label for="nome">Seu nome</label>
+
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            autocomplete="name"
+            placeholder="Como você se chama?"
+            minlength="2"
+            maxlength="80"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="whatsapp">Seu WhatsApp com DDD</label>
+
+          <input
+            type="tel"
+            id="whatsapp"
+            name="whatsapp"
+            autocomplete="tel-national"
+            inputmode="tel"
+            placeholder="(61) 99999-9999"
+            maxlength="22"
+            aria-describedby="ajuda-whatsapp"
+            required
+          >
+
+          <small class="ajuda" id="ajuda-whatsapp">
+            Digite o DDD e o número do seu WhatsApp.
+          </small>
+        </div>
+
+        <label class="autorizacao" for="consentimento">
+          <input
+            type="checkbox"
+            id="consentimento"
+            name="consentimento"
+            required
+          >
+
+          <span>
+            <strong>Autorizo o envio</strong> do meu nome, WhatsApp
+            e valor de crédito de interesse para o atendimento no
+            número <strong>(61) 99402-1882</strong>, para receber
+            contato pelo WhatsApp sobre esta solicitação.
+          </span>
+        </label>
+
+        <button
+          class="botao"
+          id="botao-enviar"
+          type="submit"
+          disabled
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/>
+            <path d="M8 11h8M8 14h5"/>
+          </svg>
+
+          Enviar pelo WhatsApp
+
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <p class="aviso" id="aviso" role="status" aria-live="polite">
+          Marque a autorização para liberar o botão.
+          Você poderá revisar a mensagem antes de enviá-la.
+        </p>
+
+        <noscript>
+          <p>
+            Ative o JavaScript do navegador para preencher
+            a mensagem e continuar pelo WhatsApp.
+          </p>
+        </noscript>
+      </form>
+    </section>
+
+    <footer>
+      Inteligência Patrimonial<br>
+      Atendimento pelo WhatsApp:
+      <strong>+55 (61) 99402-1882</strong>
+    </footer>
+
+  </main>
+
+  <script>
+    // WhatsApp que receberá a mensagem.
+    const NUMERO_DESTINO = "5561994021882";
+
+    const formulario = document.getElementById("formulario");
+    const credito = document.getElementById("credito");
+    const nome = document.getElementById("nome");
+    const whatsapp = document.getElementById("whatsapp");
+    const consentimento = document.getElementById("consentimento");
+    const botao = document.getElementById("botao-enviar");
+    const aviso = document.getElementById("aviso");
+
+    const formatoValor = new Intl.NumberFormat("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    const formatoMoeda = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    });
+
+    // Aceita exemplos como:
+    // 300000 | 300.000 | 300000,00 | 300.000,00
+    function lerCredito(texto) {
+      const limpo = texto
+        .trim()
+        .replace(/^R\$\s*/i, "");
+
+      const formatoBrasileiro =
+        /^(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d{1,2})?$/;
+
+      if (!formatoBrasileiro.test(limpo)) {
+        return NaN;
+      }
+
+      return Number(
+        limpo.replace(/\./g, "").replace(",", ".")
+      );
+    }
+
+    function telefoneNacional(texto) {
+      let numeros = texto.replace(/\D/g, "");
+
+      // Também aceita um número colado com o código +55.
+      if (
+        numeros.startsWith("55") &&
+        (numeros.length === 12 || numeros.length === 13)
+      ) {
+        numeros = numeros.slice(2);
+      }
+
+      return numeros;
+    }
+
+    function formatarTelefone(numeros) {
+      const ddd = numeros.slice(0, 2);
+      const numero = numeros.slice(2);
+      const corte = numero.length - 4;
+
+      return `(${ddd}) ${numero.slice(0, corte)}-${numero.slice(corte)}`;
+    }
+
+    function atualizarAutorizacao() {
+      consentimento.setCustomValidity("");
+      botao.disabled = !consentimento.checked;
+
+      aviso.textContent = consentimento.checked
+        ? "Ao continuar, revise a mensagem e confirme o envio no WhatsApp."
+        : "Marque a autorização para liberar o botão. Você poderá revisar a mensagem antes de enviá-la.";
+    }
+
+    // Remove erros anteriores enquanto a pessoa corrige o campo.
+    [credito, nome, whatsapp].forEach((campo) => {
+      campo.addEventListener("input", () => {
+        campo.setCustomValidity("");
+      });
+    });
+
+    // Formata o crédito ao sair do campo.
+    credito.addEventListener("blur", () => {
+      const valor = lerCredito(credito.value);
+
+      if (
+        Number.isFinite(valor) &&
+        valor > 0 &&
+        Number.isSafeInteger(Math.round(valor * 100))
+      ) {
+        credito.value = formatoValor.format(valor);
+      }
+    });
+
+    // Formata o telefone ao sair do campo.
+    whatsapp.addEventListener("blur", () => {
+      const numeros = telefoneNacional(whatsapp.value);
+
+      if (/^[1-9]{2}\d{8,9}$/.test(numeros)) {
+        whatsapp.value = formatarTelefone(numeros);
+      }
+    });
+
+    consentimento.addEventListener(
+      "change",
+      atualizarAutorizacao
+    );
+
+    window.addEventListener("pageshow", atualizarAutorizacao);
+    atualizarAutorizacao();
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+
+      const valor = lerCredito(credito.value);
+      const nomeInformado = nome.value.trim().replace(/\s+/g, " ");
+      const telefone = telefoneNacional(whatsapp.value);
+
+      const valorValido =
+        Number.isFinite(valor) &&
+        valor > 0 &&
+        Number.isSafeInteger(Math.round(valor * 100));
+
+      credito.setCustomValidity(
+        valorValido
+          ? ""
+          : "Informe um valor maior que zero. Exemplo: 300.000,00."
+      );
+
+      nome.setCustomValidity(
+        nomeInformado.length >= 2
+          ? ""
+          : "Por favor, informe seu nome."
+      );
+
+      whatsapp.setCustomValidity(
+        /^[1-9]{2}\d{8,9}$/.test(telefone)
+          ? ""
+          : "Informe o WhatsApp com DDD, usando 10 ou 11 dígitos."
+      );
+
+      consentimento.setCustomValidity(
+        consentimento.checked
+          ? ""
+          : "Marque a autorização para continuar."
+      );
+
+      if (!formulario.reportValidity()) {
+        return;
+      }
+
+      const mensagem = [
+        "*INTELIGÊNCIA PATRIMONIAL*",
+        "",
+        "Olá! Gostaria de receber atendimento.",
+        "",
+        `*Crédito de interesse:* ${formatoMoeda.format(valor)}`,
+        `*Nome:* ${nomeInformado}`,
+        `*WhatsApp com DDD:* +55 ${formatarTelefone(telefone)}`,
+        "",
+        "*Autorização:* Autorizo o envio do meu nome, WhatsApp e valor de crédito de interesse para o atendimento no número (61) 99402-1882, para receber contato pelo WhatsApp sobre esta solicitação."
+      ].join("\n");
+
+      const endereco =
+        `https://wa.me/${NUMERO_DESTINO}?text=${encodeURIComponent(mensagem)}`;
+
+      // Abre a conversa com a mensagem pronta.
+      // O visitante confirma o envio dentro do WhatsApp.
+      window.location.assign(endereco);
+    });
+  </script>
+</body>
+</html>
+```
+

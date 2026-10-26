@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consórcio Nacional Bancorbrás | Inteligência Patrimonial</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            300: '#F5E5C0',
+                            400: '#E5C268',
+                            500: '#D4AF37',
+                            600: '#B88E18',
+                            700: '#8C6908',
+                        },
+                        bancorBlue: '#7FA2C2',
+                        darkBg: '#090C10',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at 50% 20%, #151C28 0%, #0B0E14 55%, #05070A 100%);
+            min-height: 100vh;
+            color: #F8FAFC;
+        }
+
+        /* Efeito de luz dourada ao fundo */
+        .ambient-glow {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(127, 162, 194, 0.05) 50%, rgba(0,0,0,0) 75%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(13, 18, 28, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        /* Input styling */
+        .input-field {
+            background: rgba(8, 12, 20, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .input-field:focus {
+            border-color: #D4AF37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+            outline: none;
+            background: rgba(12, 17, 28, 0.9);
+        }
+
+        /* Custom Checkbox */
+        .custom-checkbox {
+            appearance: none;
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 2px solid #D4AF37;
+            padding: 9px;
+            border-radius: 6px;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .custom-checkbox:checked {
+            background-color: #D4AF37;
+            border-color: #D4AF37;
+        }
+
+        .custom-checkbox:checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 11px;
+            color: #080C14;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Botão Dourado com gradiente e brilho */
+        .btn-gold {
+            background: linear-gradient(135deg, #F3D379 0%, #D4AF37 50%, #A67C0C 100%);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 6px 28px rgba(212, 175, 55, 0.55);
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        .btn-gold:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans flex flex-col justify-between items-center p-4 md:p-6 relative overflow-x-hidden">
+
+    <div class="ambient-glow"></div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-lg z-10 my-auto py-4 md:py-8">
+        
+        <!-- Header / Logo Section -->
+        <div class="text-center mb-7">
+            
+            <!-- Título Superior "Inteligência Patrimonial" -->
+            <div class="inline-block mb-4">
+                <span class="font-heading tracking-[0.3em] text-gold-400 font-bold text-xs md:text-sm uppercase block px-4 py-1.5 rounded-full border border-gold-500/30 bg-gold-500/10 backdrop-blur-md shadow-lg">
+                    INTELIGÊNCIA PATRIMONIAL
+                </span>
+            </div>
+
+            <!-- Novo Logotipo Fiel Consórcio Nacional Bancorbrás -->
+            <div class="flex items-center justify-center space-x-3 my-3">
+                <svg class="h-12 md:h-14 w-auto drop-shadow-md" viewBox="0 0 420 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Símbolo: 3 Chevrons / Losangos Vazados em Perspectiva -->
+                    <g id="logo-symbol">
+                        <!-- Chevron 1 (Esquerda - Azul Claro) -->
+                        <path d="M 12 40 L 32 16 L 48 16 L 28 40 L 48 64 L 32 64 Z" fill="#8BAECB"/>
+                        <path d="M 28 40 L 48 16 L 42 16 L 22 40 L 42 64 L 48 64 Z" fill="#6B92B3"/>
+                        
+                        <!-- Chevron 2 (Meio - Branco/Prata) -->
+                        <path d="M 38 40 L 58 16 L 74 16 L 54 40 L 74 64 L 58 64 Z" fill="#E2E8F0"/>
+                        <path d="M 54 40 L 74 16 L 68 16 L 48 40 L 68 64 L 74 64 Z" fill="#CBD5E1"/>
+
+                        <!-- Chevron 3 (Direita - Branco Puro) -->
+                        <path d="M 64 40 L 84 16 L 100 16 L 80 40 L 100 64 L 84 64 Z" fill="#FFFFFF"/>
+                        <path d="M 80 40 L 100 16 L 94 16 L 74 40 L 94 64 L 100 64 Z" fill="#E2E8F0"/>
+                    </g>
+
+                    <!-- Textos: CONSÓRCIO NACIONAL BANCORBRÁS -->
+                    <g id="logo-text">
+                        <!-- Linha Superior: CONSÓRCIO NACIONAL -->
+                        <text x="118" y="32" font-family="'Montserrat', sans-serif" font-weight="600" font-size="18" fill="#DCE3EC" letter-spacing="2.5">
+                            CONSÓRCIO NACIONAL
+                        </text>
+                        <!-- Linha Inferior: BANCORBRÁS -->
+                        <text x="117" y="65" font-family="'Montserrat', sans-serif" font-weight="900" font-size="36" fill="#FFFFFF" letter-spacing="1.5">
+                            BANCORBRÁS
+                        </text>
+                    </g>
+                </svg>
+            </div>
+
+            <p class="text-xs md:text-sm text-gray-300 font-light max-w-sm mx-auto mt-2 leading-relaxed">
+                Consulte valores e simule a melhor estratégia para construção e proteção do seu patrimônio.
+            </p>
+        </div>
+
+        <!-- Formulário Card -->
+        <div class="glass-card rounded-2xl p-6 md:p-8 relative">
+            <form id="leadForm" onsubmit="sendToWhatsApp(event)" class="space-y-5">
+                
+                <!-- Campo 1: Valor do Crédito -->
+                <div>
+                    <label for="creditValue" class="block text-xs uppercase tracking-wider font-semibold text-gold-400 mb-2">
+                        <i class="fa-solid fa-sack-dollar mr-1.5"></i> Valor do Crédito de Interesse
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gold-400 font-bold text-base">
+                            R$
+                        </span>
+                        <input 
+                            type="text" 
+                            id="creditValue" 
+                            required 
+                            placeholder="200.000,00"
+                            class="input-field w-full pl-12 pr-4 py-3.5 rounded-xl text-white placeholder-gray-500 font-semibold text-base md:text-lg"
+                            oninput="formatCurrency(this)"
+                        >
+                    </div>
+                </div>
+
+                <!-- Campo 2: Seu Nome -->
+                <div>
+                    <label for="userName" class="block text-xs uppercase tracking-wider font-semibold text-gold-400 mb-2">
+                        <i class="fa-solid fa-user mr-1.5"></i> Seu Nome Completo
+                    </label>
+                    <input 
+                        type="text" 
+                        id="userName" 
+                        required 
+                        placeholder="Digite seu nome completo"
+                        class="input-field w-full px-4 py-3.5 rounded-xl text-white placeholder-gray-500 font-medium text-base"
+                    >
+                </div>
+
+                <!-- Campo 3: WhatsApp com DDD -->
+                <div>
+                    <label for="userPhone" class="block text-xs uppercase tracking-wider font-semibold text-gold-400 mb-2">
+                        <i class="fa-brands fa-whatsapp mr-1.5"></i> Seu WhatsApp com DDD
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="userPhone" 
+                        required 
+                        placeholder="(61) 99999-9999"
+                        maxlength="15"
+                        class="input-field w-full px-4 py-3.5 rounded-xl text-white placeholder-gray-500 font-medium text-base"
+                        oninput="formatPhone(this)"
+                    >
+                </div>
+
+                <!-- Checkbox de Autorização -->
+                <div class="pt-2">
+                    <label class="flex items-start space-x-3 cursor-pointer group">
+                        <input 
+                            type="checkbox" 
+                            id="authCheck" 
+                            required 
+                            class="custom-checkbox mt-0.5 flex-shrink-0"
+                        >
+                        <span class="text-xs text-gray-300 group-hover:text-white transition-colors leading-relaxed">
+                            Autorizo o envio destas informações para receber um atendimento personalizado via <strong class="text-gold-400 font-semibold">WhatsApp</strong>.
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Mensagem de Alerta -->
+                <div id="errorMessage" class="hidden text-red-300 text-xs text-center bg-red-950/60 border border-red-800/60 p-3 rounded-xl font-medium">
+                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Por favor, preencha todos os campos e marque a autorização.
+                </div>
+
+                <!-- Botão de Envio -->
+                <button 
+                    type="submit" 
+                    class="btn-gold w-full py-4 rounded-xl font-heading font-extrabold text-slate-950 text-sm md:text-base tracking-wide uppercase flex items-center justify-center space-x-2.5 cursor-pointer mt-2"
+                >
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Simular e Enviar via WhatsApp</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="text-center mt-6 space-y-2">
+            <p class="text-[11px] text-gray-400 flex items-center justify-center space-x-1.5">
+                <i class="fa-solid fa-lock text-gold-500"></i>
+                <span>Seus dados estão seguros e protegidos.</span>
+            </p>
+            <p class="text-[10px] text-gray-500 font-light">
+                © 2026 Consórcio Nacional Bancorbrás. Inteligência Patrimonial.
+            </p>
+        </div>
+
+    </main>
+
+    <script>
+        // Formatação em tempo real do campo Moeda (R$)
+        function formatCurrency(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value === '') {
+                input.value = '';
+                return;
+            }
+            value = (parseFloat(value) / 100).toFixed(2) + '';
+            value = value.replace(".", ",");
+            value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+            input.value = value;
+        }
+
+        // Formatação da Máscara de Telefone com DDD: (XX) XXXXX-XXXX
+        function formatPhone(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 6) {
+                input.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+            } else if (value.length > 2) {
+                input.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+            } else if (value.length > 0) {
+                input.value = `(${value}`;
+            } else {
+                input.value = '';
+            }
+        }
+
+        // Envio das informações via API do WhatsApp
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const creditValue = document.getElementById('creditValue').value.trim();
+            const userName = document.getElementById('userName').value.trim();
+            const userPhone = document.getElementById('userPhone').value.trim();
+            const authCheck = document.getElementById('authCheck').checked;
+            const errorMsg = document.getElementById('errorMessage');
+
+            // Validação dos campos
+            if (!creditValue || !userName || !userPhone || !authCheck) {
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            errorMsg.classList.add('hidden');
+
+            // Número de WhatsApp de destino fornecido
+            const targetNumber = "5561994021882";
+
+            // Montagem do texto da mensagem
+            const message = `Olá! Gostaria de uma simulação do *Consórcio Nacional Bancorbrás - Inteligência Patrimonial*:\n\n` +
+                            `👤 *Nome:* ${userName}\n` +
+                            `💰 *Valor do Crédito:* R$ ${creditValue}\n` +
+                            `📱 *WhatsApp:* ${userPhone}\n\n` +
+                            `✅ *Autorização:* Sim, autorizo o envio das informações para contato.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodedMessage}`;
+
+            // Redireciona para o WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
